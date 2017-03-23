@@ -1,4 +1,4 @@
-#Feature
+# Feature
 
 1. basic and certificate auth
 1. config file support
@@ -7,11 +7,6 @@
 1. events
 1. status
 
-#Developing
-
-1. Code cleanup
-1. Configuration Management
-
-#Usage
+# Usage
 
 See the **doc** directory.
