@@ -9,17 +9,10 @@ from __future__ import print_function
 import logging
 import os
 import requests
-import sys
-# pylint: disable=import-error,no-name-in-module
-if sys.version_info >= (3, 0):
-    from urllib.parse import urljoin
-    import configparser as configparser
-else:
-    from urlparse import urljoin
-    import ConfigParser as configparser
-# pylint: enable=import-error,no-name-in-module
 
 import icinga2api
+from six.moves import configparser
+from six.moves.urllib.parse import urljoin
 
 LOG = logging.getLogger(__name__)
 
