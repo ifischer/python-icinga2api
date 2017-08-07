@@ -16,6 +16,10 @@ from six.moves.urllib.parse import urljoin
 
 LOG = logging.getLogger(__name__)
 
+if 'ENABLE_INSECURE_REQUESTS' in os.environ:
+    import urllib3
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 
 class Icinga2ApiException(Exception):
     """
