@@ -6,8 +6,10 @@ The Icinga 2 API allows you to manage configuration objects and resources in a s
 programmatic way using HTTP requests.
 """
 from __future__ import print_function
+
 import logging
 import os
+
 import requests
 
 import icinga2api
