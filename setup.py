@@ -3,8 +3,8 @@ from setuptools import setup
 PACKAGE = "icinga2api"
 NAME = "python-icinga2api"
 DESCRIPTION = "python icinga2 api "
-AUTHOR = "fmnisme, Tobias von der Krone"
-AUTHOR_EMAIL = "fmnisme@gmail.com, tobias@vonderkrone.info"
+AUTHOR = "fmnisme, Tobias von der Krone, Ingo Fischer"
+AUTHOR_EMAIL = "fmnisme@gmail.com, tobias@vonderkrone.info, mail@ingofischer.de"
 URL = "https://github.com/tobiasvdk/python-icinga2api"
 VERSION = __import__(PACKAGE).__version__
 
