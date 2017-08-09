@@ -18,10 +18,6 @@ from six.moves.urllib.parse import urljoin
 
 LOG = logging.getLogger(__name__)
 
-if 'ENABLE_INSECURE_REQUESTS' in os.environ:
-    import urllib3
-    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
 
 class Icinga2ApiException(Exception):
     """
@@ -189,7 +185,8 @@ class Client(object):
                  certificate=None,
                  key=None,
                  ca_certificate=None,
-                 config_file=None):
+                 config_file=None,
+                 ignore_insecure_requests=False):
         """
         initialize object
         """
@@ -215,6 +212,10 @@ class Client(object):
         self.events = Events(self)
         self.status = Status(self)
         self.version = icinga2api.__version__
+
+        if ignore_insecure_requests:
+            import urllib3
+            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
         if not self.url:
             raise Icinga2ApiException('No "url" defined.')
