@@ -432,7 +432,7 @@ class Objects(Base):
              object_type,
              name=None,
              attrs=None,
-             _filter=None,
+             filter=None,
              filter_vars=None,
              joins=None):
         """
@@ -444,8 +444,8 @@ class Objects(Base):
         :type name: string
         :param attrs: only return these attributes
         :type attrs: list
-        :param _filter: filter the object list
-        :type _filter: string
+        :param filter: filter the object list
+        :type filter: string
         :param filter_vars: variables used in the filter expression
         :type filter_vars: dict
         :param joins: show joined object
@@ -478,8 +478,8 @@ class Objects(Base):
         payload = {}
         if attrs:
             payload['attrs'] = attrs
-        if _filter:
-            payload['filter'] = _filter
+        if filter:
+            payload['filter'] = filter
         if filter_vars:
             payload['filter_vars'] = filter_vars
         if isinstance(joins, bool) and joins:
@@ -564,7 +564,7 @@ class Objects(Base):
     def delete(self,
                object_type,
                name=None,
-               _filter=None,
+               filter=None,
                filter_vars=None,
                cascade=True):
         """
@@ -574,8 +574,8 @@ class Objects(Base):
         :type object_type: string
         :param name: the name of the object
         :type name: string
-        :param _filter: filter the object list
-        :type _filter: string
+        :param filter: filter the object list
+        :type filter: string
         :param filter_vars: variables used in the filter expression
         :type filter_vars: dict
         :param cascade: deleted dependent objects
@@ -590,8 +590,8 @@ class Objects(Base):
         object_type_url_path = self._convert_object_type(object_type)
 
         payload = {}
-        if _filter:
-            payload['filter'] = _filter
+        if filter:
+            payload['filter'] = filter
         if filter_vars:
             payload['filter_vars'] = filter_vars
         if cascade:
@@ -672,7 +672,7 @@ class Actions(Base):
 
     def reschedule_check(self,
                          object_type,
-                         _filter,
+                         filter,
                          filter_vars=None,
                          next_check=None,
                          force_check=True):
@@ -690,8 +690,8 @@ class Actions(Base):
 
         :param object_type: Host or Service
         :type object_type: string
-        :param _filter: filter the object
-        :type _filter: string
+        :param filter: filter the object
+        :type filter: string
         :param filter_vars: variables used in the filter expression
         :type filter_vars: dict
         :param next_check: timestamp to run the check
@@ -706,7 +706,7 @@ class Actions(Base):
 
         payload = {
             'type': object_type,
-            'filter': _filter,
+            'filter': filter,
             'force_check': force_check
         }
         if next_check:
@@ -718,7 +718,7 @@ class Actions(Base):
 
     def send_custom_notification(self,
                                  object_type,
-                                 _filter,
+                                 filter,
                                  author,
                                  comment,
                                  filter_vars=None,
@@ -734,8 +734,8 @@ class Actions(Base):
 
         :param object_type: Host or Service
         :type object_type: string
-        :param _filter: filter the object
-        :type _filter: string
+        :param filter: filter the object
+        :type filter: string
         :param author: name of the author
         :type author: string
         :param comment: comment text
@@ -752,7 +752,7 @@ class Actions(Base):
 
         payload = {
             'type': object_type,
-            'filter': _filter,
+            'filter': filter,
             'author': author,
             'comment': comment,
             'force': force
@@ -764,7 +764,7 @@ class Actions(Base):
 
     def delay_notification(self,
                            object_type,
-                           _filter,
+                           filter,
                            timestamp,
                            filter_vars=None):
         """
@@ -780,8 +780,8 @@ class Actions(Base):
 
         :param object_type: Host or Service
         :type object_type: string
-        :param _filter: filter the object
-        :type _filter: string
+        :param filter: filter the object
+        :type filter: string
         :param timestamp: timestamp to delay the notifications to
         :type timestamp: int
         :param filter_vars: variables used in the filter expression
@@ -794,7 +794,7 @@ class Actions(Base):
 
         payload = {
             'type': object_type,
-            'filter': _filter,
+            'filter': filter,
             'timestamp': timestamp
         }
         if filter_vars:
@@ -804,7 +804,7 @@ class Actions(Base):
 
     def acknowledge_problem(self,
                             object_type,
-                            _filter,
+                            filter,
                             author,
                             comment,
                             filter_vars=None,
@@ -816,8 +816,8 @@ class Actions(Base):
 
         :param object_type: Host or Service
         :type object_type: string
-        :param _filter: filter the object
-        :type _filter: string
+        :param filter: filter the object
+        :type filter: string
         :param author: name of the author
         :type author: string
         :param comment: comment text
@@ -838,7 +838,7 @@ class Actions(Base):
 
         payload = {
             'type': object_type,
-            'filter': _filter,
+            'filter': filter,
             'author': author,
             'comment': comment,
         }
@@ -855,7 +855,7 @@ class Actions(Base):
 
     def remove_acknowledgement(self,
                                object_type,
-                               _filter,
+                               filter,
                                filter_vars=None):
         """
         Remove the acknowledgement for services or hosts.
@@ -866,8 +866,8 @@ class Actions(Base):
 
         :param object_type: Host or Service
         :type object_type: string
-        :param _filter: filter the object
-        :type _filter: string
+        :param filter: filter the object
+        :type filter: string
         :param filter_vars: variables used in the filter expression
         :type filter_vars: dict
         :returns: the response as json
@@ -878,7 +878,7 @@ class Actions(Base):
 
         payload = {
             'type': object_type,
-            'filter': _filter
+            'filter': filter
         }
         if filter_vars:
             payload['filter_vars'] = filter_vars
@@ -887,7 +887,7 @@ class Actions(Base):
 
     def add_comment(self,
                     object_type,
-                    _filter,
+                    filter,
                     author,
                     comment,
                     filter_vars=None):
@@ -902,8 +902,8 @@ class Actions(Base):
 
         :param object_type: Host or Service
         :type object_type: string
-        :param _filter: filter the object
-        :type _filter: string
+        :param filter: filter the object
+        :type filter: string
         :param author: name of the author
         :type author: string
         :param comment: comment text
@@ -918,7 +918,7 @@ class Actions(Base):
 
         payload = {
             'type': object_type,
-            'filter': _filter,
+            'filter': filter,
             'author': author,
             'comment': comment
         }
@@ -930,7 +930,7 @@ class Actions(Base):
     def remove_comment(self,
                        object_type,
                        name,
-                       _filter,
+                       filter,
                        filter_vars=None):
         """
         Remove a comment using its name or a filter.
@@ -947,8 +947,8 @@ class Actions(Base):
         :type object_type: string
         :param name: name of the Comment
         :type name: string
-        :param _filter: filter the object
-        :type _filter: string
+        :param filter: filter the object
+        :type filter: string
         :param filter_vars: variables used in the filter expression
         :type filter_vars: dict
         :returns: the response as json
@@ -962,8 +962,8 @@ class Actions(Base):
         }
         if name:
             payload[object_type.lower()] = name
-        if _filter:
-            payload['filter'] = _filter
+        if filter:
+            payload['filter'] = filter
         if filter_vars:
             payload['filter_vars'] = filter_vars
 
@@ -971,7 +971,7 @@ class Actions(Base):
 
     def schedule_downtime(self,
                           object_type,
-                          _filter,
+                          filter,
                           author,
                           comment,
                           start_time,
@@ -1007,8 +1007,8 @@ class Actions(Base):
 
         :param object_type: Host or Service
         :type object_type: string
-        :param _filter: filter the object
-        :type _filter: string
+        :param filter: filter the object
+        :type filter: string
         :param author: name of the author
         :type author: string
         :param comment: comment text
@@ -1033,7 +1033,7 @@ class Actions(Base):
 
         payload = {
             'type': object_type,
-            'filter': _filter,
+            'filter': filter,
             'author': author,
             'comment': comment,
             'start_time': start_time,
@@ -1052,7 +1052,7 @@ class Actions(Base):
     def remove_downtime(self,
                         object_type,
                         name=None,
-                        _filter=None,
+                        filter=None,
                         filter_vars=None):
         """
         Remove the downtime using its name or a filter.
@@ -1069,15 +1069,15 @@ class Actions(Base):
         :type object_type: string
         :param name: name of the downtime
         :type name: string
-        :param _filter: filter the object
-        :type _filter: string
+        :param filter: filter the object
+        :type filter: string
         :param filter_vars: variables used in the filter expression
         :type filter_vars: dict
         :returns: the response as json
         :rtype: dictionary
         """
 
-        if not name and not _filter:
+        if not name and not filter:
             raise Icinga2ApiException("name and filter is empty or none")
 
         url = '{}/{}'.format(self.base_url_path, 'remove-downtime')
@@ -1087,8 +1087,8 @@ class Actions(Base):
         }
         if name:
             payload[object_type.lower()] = name
-        if _filter:
-            payload['filter'] = _filter
+        if filter:
+            payload['filter'] = filter
         if filter_vars:
             payload['filter_vars'] = filter_vars
 
@@ -1129,7 +1129,7 @@ class Events(Base):
     def subscribe(self,
                   types,
                   queue,
-                  _filter=None,
+                  filter=None,
                   filter_vars=None):
         """
         subscribe to an event stream
@@ -1145,8 +1145,8 @@ class Events(Base):
         :type types: array
         :param queue: the queue name to subscribe to
         :type queue: string
-        :param _filter: additional filter to apply
-        :type _filter: dictionary
+        :param filter: additional filter to apply
+        :type filter: dictionary
         :param filter_vars: variables used in the filter expression
         :type filter_vars: dict
         :returns: the events
@@ -1156,8 +1156,8 @@ class Events(Base):
             "types": types,
             "queue": queue,
         }
-        if _filter:
-            payload["filter"] = _filter
+        if filter:
+            payload["filter"] = filter
         if filter_vars:
             payload["filter_vars"] = filter_vars
 
