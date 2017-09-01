@@ -279,7 +279,6 @@ class Base(object):
         """
 
         request_url = urljoin(self.manager.url, url_path)
-        LOG.debug("Request URL: {0}".format(request_url))
 
         # create session
         session = self._create_session(method)
@@ -302,11 +301,9 @@ class Base(object):
 
         if not stream:
             session.close()
-        # # for debugging
-        # from pprint import pprint
-        # pprint(request_url)
-        # pprint(payload)
-        # pprint(response)
+        LOG.debug("Request URL: {}".format(request_url))
+        LOG.debug("Payload: {}".format(payload))
+        LOG.debug("Response: {}".format(response))
 
         if not 200 <= response.status_code <= 299:
             raise Icinga2ApiException(
