@@ -306,6 +306,17 @@ class Base(object):
         LOG.debug("Payload: {}".format(payload))
         LOG.debug("Response: {}".format(response))
 
+        # Log curl request
+        req = response.request
+        command = ("curl -k -u $ICINGA_USER:$ICINGA_PASSWORD "
+                   "-X {method} -H {headers} -d '{data}' '{uri}'")
+        method = req.method
+        uri = req.url
+        data = req.body.decode() if req.body else ''
+        headers = ['"{0}: {1}"'.format(k, v) for k, v in req.headers.items()]
+        headers = " -H ".join(headers)
+        LOG.debug(command.format(method=method, headers=headers, data=data, uri=uri))
+
         if not 200 <= response.status_code <= 299:
             raise Icinga2ApiException(
                 'Request "{}" failed with status {}: {}'.format(
