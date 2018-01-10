@@ -1098,7 +1098,7 @@ class Actions(Base):
             'type': object_type
         }
         if name:
-            payload[object_type.lower()] = name
+            url = "{}?downtime={}".format(url, name)
         if filter:
             payload['filter'] = filter
         if filter_vars:
