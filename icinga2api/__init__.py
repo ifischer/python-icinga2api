@@ -6,4 +6,4 @@
 
 __author__ = 'fmnisme, Tobias von der Krone, Ingo Fischer'
 __contact__ = 'fmnisme@gmail.com, tobias@vonderkrone.info, mail@ingofischer.de'
-__version__ = '0.4'
+__version__ = '0.5'

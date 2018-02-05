@@ -941,8 +941,8 @@ class Actions(Base):
 
     def remove_comment(self,
                        object_type,
-                       name,
-                       filter,
+                       name=None,
+                       filter=None,
                        filter_vars=None):
         """
         Remove a comment using its name or a filter.
